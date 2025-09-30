@@ -6,6 +6,7 @@ const navItems = [
   { href: "/ssr", label: "SSR" },
   { href: "/csr", label: "CSR" },
   { href: "/isr", label: "ISR" },
+  { href: "/post", label: "POST" },
 ];
 
 export function Header() {
