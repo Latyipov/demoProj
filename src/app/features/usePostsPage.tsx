@@ -35,10 +35,13 @@ export function usePostsPage(limit: number) {
           for (const item of data.items) map.set(item.id, item);
           return Array.from(map.values());
         });
-
         setCursor(data.nextCursor);
-      } catch (error: any) {
-        setError(error?.message ?? "Failed to load");
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error?.message ?? "Failed to load");
+        } else {
+          console.error("Unknown error", error);
+        }
       } finally {
         setLoading(false);
         pendingRef.current = false;

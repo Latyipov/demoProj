@@ -30,8 +30,12 @@ export default function PostsPage() {
       const response = await createPost(data);
 
       setResult(response);
-    } catch (error: any) {
-      setResult({ error: error.message });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setResult({ error: error.message });
+      } else {
+        console.error("Unknown error", error);
+      }
     } finally {
       setLoading(false);
     }
